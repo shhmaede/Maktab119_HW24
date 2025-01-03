@@ -1,0 +1,24 @@
+{% load static %}
+<div class="flex gap-x-4 justify-center items-center bg-rose-400 text-white text-[12px] py-2">
+    <div class="flex text-black h-[30px]">
+        <input id="productName" class="h-full px-2" placeholder="Search Products"/>
+        <div class="flex bg-rose-500 w-[30px] justify-center items-center">
+            <button type="button" id="productSearchBtn"><img src="{% static 'img/search-icon.png' %}"></button>
+        </div>
+    </div>
+
+    <ul class="flex gap-x-4">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">New Release</a>
+        </li>
+        <li>
+            <a href="#">Customer Servie</a>
+        </li>
+        <li>
+            <a href="#">Best Sellers</a>
+        </li>
+    </ul>
+</div>

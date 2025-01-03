@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>به فروشگاه آنلاین ما خوش آمدین</title>
+</head>
+<body class="h-full w-full container mx-auto font-Mulish py-6 bg-rose-100">
+    <header>
+        {% include 'header_menu.html' %}
+        <div class="w-full"><img class="w-full h-[250px]" src="{% static 'img/site-banner.jpg' %}"></div>
+        <div class="flex justify-between bg-rose-400 text-white text-[12px] py-2 px-2">
+            <div>
+                <div class="bg-rose-500 px-2 py-2">
+                    <a href="{% url 'user_page' %}">Signup / Login</a>
+                </div>
+            </div>
+            <div class="relative" id="dropdownButton">
+                <div id="dpButton" class="bg-rose-500 px-4 py-2 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:bg-rose-700 inline-flex items-center dark:bg-rose-500 dark:hover:bg-rose-700 dark:focus:bg-rose-700">
+                    All Category
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                </div>
+                {% include 'product/product_cat_menu.html' %}
+            </div>
+        </div>
+    </header>
+    <main class="">
+        <div class="relative px-2"></div>
+        <div class="mt-10 mx-auto flex flex-wrap justify-center gap-6">
+            {% for prd in products%}
+                <a href="{% url 'show_product_details' product_id=prd.id %}">
+                    <div class="bg-white px-4 py-4 space-y-6 w-[200px] lg:w-[350px] shadow-[6px_6px_2px_1px_rgba(0,0,0,0.05)] rounded-lg">
+                        <div class="w-[200px] h-[200px]">
+                            <img class="w-[200px] h-[200px]" src="{{ prd.product_image.url }}"/>
+                        </div>
+                        <span class="block text-[14px] font-bold">{{prd.product_name}}</span>
+                        <span class="block text-[12px] text-gray-500">
+                            price: {{prd.product_price}}$
+                        </span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div></div>
+    </main>
+    <footer class="bg-rose-400 mt-10 py-[50px] px-[50px] mx-auto text-white grid grid-cols-2 lg:grid-cols-5 gap-6">
+
+    </footer>
+    <script src="{% static 'home_page/js/home_page.js' %}"></script>
+    <script src="{% static 'js/header_menu.js' %}"></script>
+</body>
+</html>

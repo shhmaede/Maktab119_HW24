@@ -1,0 +1,9 @@
+<div id="dropdownMenu" class="hidden absolute bg-rose-400 shadow w-[123px] cursor-pointer shadow-md border-rose-700">
+    <ul class="text-[12px] text-white" aria-labelledby="dropdownButton">
+        {% for cat in product_categoreies %}
+             <li>
+                <a href="{% url 'find_product_with_category' category_id=cat.id %}" class="block px-4 py-2 hover:bg-rose-600 cursor-pointer">{{cat.category_name}}</a>
+              </li>
+        {% endfor %}
+    </ul>
+</div>

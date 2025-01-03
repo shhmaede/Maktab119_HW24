@@ -1,0 +1,61 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>ورورد/ ثبت نام کاربران</title>
+</head>
+<body class="h-full w-full container mx-auto font-Mulish py-6 bg-rose-100 relative">
+    <div class="absolute left-[40px] -z-10 w-[100]"><img src="{% static 'user/img/Element.png' %}"></div>
+    <div class="absolute top-[350px] right-[120px] -z-10 w-[100]"><img src="{% static 'user/img/Element.png' %}"></div>
+    <div class="flex gap-x-4 justify-center items-center">
+        <form id="signupForm">
+            <div class="bg-white grid gap-2 px-2 py-4 rounded-lg w-[300px]">
+                <div class="text-[18px] text-center">Signup</div>
+                <div>
+                    <label for="username" class="block mb-2 text-[12px] font-medium text-gray-900 ">Username</label>
+                    <input type="text" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2" required />
+                </div>
+                <div>
+                    <label for="phone" class="block mb-2 text-[12px] font-medium text-gray-900 ">Phone number</label>
+                    <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2" required />
+                </div>
+                <div class="">
+                    <label for="email" class="block mb-2 text-[12px] font-medium text-gray-900 ">Email address</label>
+                    <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2" required />
+                </div>
+                <div class="">
+                    <label for="signupPassword" class="block mb-2 text-[12px] font-medium text-gray-900 ">Password</label>
+                    <input type="password" id="signupPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2"  required />
+                    <span id="passwordError" class="text-[12px]"></span>
+                </div>
+                <div class="">
+                    <label for="confirmPassword" class="block mb-2 text-[12px] font-medium text-gray-900 ">Confirm password</label>
+                    <input type="password" id="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2"  required />
+                    <span id="confirmPasswordError" class="text-[12px]"></span>
+                </div>
+                <p id="message" class="text-[14px]"></p>
+                <button type="submit" class="hover:bg-rose-500 border border-gray-300 font-medium rounded-lg text-sm w-full px-5 py-2 text-center">Signup</button>
+            </div>
+
+        </form>
+        <form id="loginForm">
+            <div class="bg-white grid gap-2 mb-6 px-2 py-4 rounded-lg w-[300px]">
+                <div class="text-[18px] text-center">Login</div>
+                <div>
+                    <label for="loginUsername" class="block mb-2 text-[12px] font-medium text-gray-900 ">Username</label>
+                    <input type="text" id="loginUsername" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2" required />
+                </div>
+                <div class="mb-6">
+                    <label for="loginPassword" class="block mb-2 text-[12px] font-medium text-gray-900 ">Password</label>
+                    <input type="password" id="loginPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2"  required />
+                </div>
+                <button type="submit" class="hover:bg-rose-500 border border-gray-300 font-medium rounded-lg text-sm w-full px-5 py-2 text-center">Login</button>
+            </div>
+
+        </form>
+    </div>
+    <script src="{% static 'user/js/signup_login.js' %}"></script>
+</body>
+</html>
