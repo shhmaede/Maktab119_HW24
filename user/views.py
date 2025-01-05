@@ -5,8 +5,7 @@ from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import User
-from product.models import Product
-from product.models import ProductCategories
+
 
 def load_user_page(request):
     if request.method == 'POST':
@@ -30,11 +29,6 @@ def login(request, username):
 
     if user_password:
         if post_data.get('password') == user_password[0].get('password'):
-            product_categoreies = ProductCategories.objects.all()
-            products = Product.objects.all()
-            context = {'product_categoreies': product_categoreies,
-                       'products': products,
-                       'username': username}
             return HttpResponse(json.dumps({'success': True, 'url': '/home_page/'+username}))
         else:
             return HttpResponse(json.dumps({'success': False, 'message': 'The password is wrong.'}))

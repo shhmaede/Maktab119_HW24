@@ -1,5 +1,6 @@
-from pprint import pprint
+import json
 
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Product, ProductCategories
 
@@ -28,10 +29,9 @@ def find_product_with_category(request, category_id):
 def find_product_with_name(request, product_name):
     #product_name = request.GET.get('product_name', 'Not provided')
     product_categoreies = ProductCategories.objects.all()
-    products = Product.objects.filter(product_name__contains=product_name).values()
-    pprint(products)
+    products = Product.objects.filter(product_name__contains=product_name)
+    print(products)
     context = {'product_categoreies': product_categoreies,
                'products': products}
-    pprint(products)
     return render(request, 'home_page/index.html', context)
 

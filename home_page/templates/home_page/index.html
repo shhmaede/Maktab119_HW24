@@ -38,19 +38,23 @@
     <main class="">
         <div class="relative px-2"></div>
         <div class="mt-10 mx-auto flex flex-wrap justify-center gap-6">
-            {% for prd in products%}
-                <a href="{% url 'show_product_details' product_id=prd.id %}">
-                    <div class="bg-white px-4 py-4 space-y-6 w-[200px] lg:w-[350px] shadow-[6px_6px_2px_1px_rgba(0,0,0,0.05)] rounded-lg">
-                        <div class="w-[200px] h-[200px]">
-                            <img class="w-[200px] h-[200px]" src="{{ prd.product_image.url }}"/>
+            {% if products %}
+                {% for prd in products%}
+                    <a href="{% url 'show_product_details' product_id=prd.id %}">
+                        <div class="bg-white px-4 py-4 space-y-6 w-[200px] lg:w-[350px] shadow-[6px_6px_2px_1px_rgba(0,0,0,0.05)] rounded-lg">
+                            <div class="w-[200px] h-[200px]">
+                                <img class="w-[200px] h-[200px]" src="{{ prd.product_image.url }}"/>
+                            </div>
+                            <span class="block text-[14px] font-bold">{{prd.product_name}}</span>
+                            <span class="block text-[12px] text-gray-500">
+                                price: {{prd.product_price}}$
+                            </span>
                         </div>
-                        <span class="block text-[14px] font-bold">{{prd.product_name}}</span>
-                        <span class="block text-[12px] text-gray-500">
-                            price: {{prd.product_price}}$
-                        </span>
-                    </div>
-                </a>
-            {% endfor %}
+                    </a>
+                {% endfor %}
+            {% else %}
+                There is no product with this feature
+            {% endif %}
         </div>
         <div></div>
     </main>

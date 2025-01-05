@@ -8,6 +8,7 @@ from product.models import Product
 def load_home_page(request, username=None):
     product_categoreies = ProductCategories.objects.all()
     products = Product.objects.all()
+    print(products)
     context = {'product_categoreies': product_categoreies,
                'products': products,
                'username': username}
