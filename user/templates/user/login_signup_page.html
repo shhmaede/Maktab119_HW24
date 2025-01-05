@@ -41,7 +41,8 @@
             </div>
 
         </form>
-        <form id="loginForm">
+        <form id="loginForm" method="POST">
+            {% csrf_token %}
             <div class="bg-white grid gap-2 mb-6 px-2 py-4 rounded-lg w-[300px]">
                 <div class="text-[18px] text-center">Login</div>
                 <div>
@@ -52,6 +53,7 @@
                     <label for="loginPassword" class="block mb-2 text-[12px] font-medium text-gray-900 ">Password</label>
                     <input type="password" id="loginPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2"  required />
                 </div>
+                <p id="loginMessage" class="text-[10px]"></p>
                 <button type="submit" class="hover:bg-rose-500 border border-gray-300 font-medium rounded-lg text-sm w-full px-5 py-2 text-center">Login</button>
             </div>
 

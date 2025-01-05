@@ -1,8 +1,12 @@
 import json
+
+from django.contrib.messages.context_processors import messages
 from django.db.utils import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import User
+from product.models import Product
+from product.models import ProductCategories
 
 def load_user_page(request):
     if request.method == 'POST':
@@ -20,7 +24,21 @@ def load_user_page(request):
     else:
         return render(request, 'user/login_signup_page.html')
 
-def signup(request):
-    print(request.POST)
+def login(request, username):
+    post_data = json.loads(request.body.decode("utf-8"))
+    user_password = User.objects.filter(username=username).values('password')
+
+    if user_password:
+        if post_data.get('password') == user_password[0].get('password'):
+            product_categoreies = ProductCategories.objects.all()
+            products = Product.objects.all()
+            context = {'product_categoreies': product_categoreies,
+                       'products': products,
+                       'username': username}
+            return HttpResponse(json.dumps({'success': True, 'url': '/home_page/'+username}))
+        else:
+            return HttpResponse(json.dumps({'success': False, 'message': 'The password is wrong.'}))
+    else:
+        return HttpResponse(json.dumps({'success': False, 'message': 'The username is wrong.'}))
 
 

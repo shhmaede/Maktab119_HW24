@@ -1,3 +1,5 @@
+host = 'http://127.0.0.1:8000'
+
 document.getElementById('signupForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -27,7 +29,7 @@ document.getElementById('signupForm').addEventListener('submit', function (event
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     let data = {username:username, password:password, Email:email, phone:phone};
-    let url = 'http://127.0.0.1:8000/user_page/';
+    let url = host+'/user_page/';
 
     const config = {
         method: "POST",
@@ -37,7 +39,7 @@ document.getElementById('signupForm').addEventListener('submit', function (event
 
    return fetch(url, config)
    .then(response => response.json())
-   .then(response => {console.log(response.message)
+   .then(response => {
          if (response.success) {
             message.style.color = 'green';
             message.textContent = response.message;
@@ -47,6 +49,36 @@ document.getElementById('signupForm').addEventListener('submit', function (event
          }
    })
 });
+
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    let username = document.getElementById('loginUsername').value;
+    let password = document.getElementById('loginPassword').value;
+
+    let data = {username:username, password:password};
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    let url = host+'/user_page/'+username;
+    const config = {
+        method: "POST",
+        headers: {'X-CSRFToken': csrftoken},
+        body: JSON.stringify(data)
+    }
+
+    return fetch(url, config)
+   .then(response => response.json())
+   .then(response => {
+         if (response.success) {
+             console.log(response.url)
+            location.replace(host+response.url) ;
+         }else{
+            loginMessage.style.color = 'red';
+            loginMessage.textContent = response.message;
+         }
+   })
+});
+
+
 
         // document.getElementById('signupPassword').addEventListener('focus', function () {
         //     document.getElementById('passwordHint').style.display = 'block';
