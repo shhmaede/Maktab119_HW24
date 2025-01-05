@@ -10,7 +10,8 @@
     <div class="absolute left-[40px] -z-10 w-[100]"><img src="{% static 'user/img/Element.png' %}"></div>
     <div class="absolute top-[350px] right-[120px] -z-10 w-[100]"><img src="{% static 'user/img/Element.png' %}"></div>
     <div class="flex gap-x-4 justify-center items-center">
-        <form id="signupForm">
+        <form id="signupForm" method="POST">
+            {% csrf_token %}
             <div class="bg-white grid gap-2 px-2 py-4 rounded-lg w-[300px]">
                 <div class="text-[18px] text-center">Signup</div>
                 <div>
@@ -35,7 +36,7 @@
                     <input type="password" id="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-lg block w-full px-2 py-2"  required />
                     <span id="confirmPasswordError" class="text-[12px]"></span>
                 </div>
-                <p id="message" class="text-[14px]"></p>
+                <p id="message" class="text-[10px]"></p>
                 <button type="submit" class="hover:bg-rose-500 border border-gray-300 font-medium rounded-lg text-sm w-full px-5 py-2 text-center">Signup</button>
             </div>
 

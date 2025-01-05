@@ -1,4 +1,3 @@
-console.log('f')
 document.getElementById('signupForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -26,38 +25,27 @@ document.getElementById('signupForm').addEventListener('submit', function (event
         confirmPasswordError.textContent = '';
     }
 
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     let data = {username:username, password:password, Email:email, phone:phone};
     let url = 'http://127.0.0.1:8000/user_page/';
 
     const config = {
-
         method: "POST",
-
-        headers: {
-            'Content-Type':'application/json'
-
-        },
-
+        headers: {'X-CSRFToken': csrftoken},
         body: JSON.stringify(data)
-
     }
 
    return fetch(url, config)
-   .then((response) => {
-         if (!response.ok) {
+   .then(response => response.json())
+   .then(response => {console.log(response.message)
+         if (response.success) {
+            message.style.color = 'green';
+            message.textContent = response.message;
+         }else{
             message.style.color = 'red';
-            message.textContent = 'Signup fail!';
+            message.textContent = response.message;
          }
-         return response.text();
    })
-  .then((text) => {
-        message.style.color = 'green';
-        message.textContent = 'Signup successful!';
-   })
-  .catch((error) => {
-        message.style.color = 'green';
-        message.textContent = error;
-  });
 });
 
         // document.getElementById('signupPassword').addEventListener('focus', function () {
